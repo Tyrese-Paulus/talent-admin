@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z8">
+<mat-toolbar class="mat-elevation-z8" routerLink="/">
   <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
@@ -11,11 +11,11 @@
     <img class="avatar mat-elevation-z8" src="https://www.syncmodels.com/assets/images/205/205-logo.svg" />
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="">
+    <button mat-button class="menu-button" routerLink="/talents">
       <mat-icon>accessibility</mat-icon>
       <span>Models</span>
     </button>
-    <button mat-button class="menu-button" routerLink="">
+    <button mat-button class="menu-button" routerLink="/talents/form">
       <mat-icon>settings</mat-icon>
       <span>Settings</span>
     </button>
