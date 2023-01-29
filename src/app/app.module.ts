@@ -23,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button'
 import { ToastModule} from 'primeng/toast'
 import { MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -48,9 +50,10 @@ import { MessageService } from 'primeng/api';
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

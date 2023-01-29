@@ -40,6 +40,8 @@ export class TalentFormComponent implements OnInit {
        image: ['']
     });
 
+    this.currentTalentid = this.route.snapshot.paramMap.get("id")
+
     this._checkEditMode();
   }
 
@@ -70,34 +72,39 @@ export class TalentFormComponent implements OnInit {
         );
       }
 
-      //  private _deleteTalent(talentId: string) {
-      //   this.confirmationService.confirm({
-      //     message: 'Do you want to delete this Talent?',
-      //     header: 'Delete Talent',
-      //     icon: 'pi pi-exclamation-triangle',
-      //     accept: () => {
-      //       this.talentService
-      //         .deleteTalent(talentId)
-      //         .pipe(takeUntil(this.endsubs$))
-      //         .subscribe(
-      //           () => {
-      //             this.messageService.add({
-      //               severity: 'success',
-      //               summary: 'Success',
-      //               detail: 'Talent is deleted!'
-      //             });
-      //           },
-      //           () => {
-      //             this.messageService.add({
-      //               severity: 'error',
-      //               summary: 'Error',
-      //               detail: 'Talent is not deleted!'
-      //             });
-      //           }
-      //         );
-      //     }
-      //   });
-      // }
+       _deleteTalent(talentId: string) {
+        this.confirmationService.confirm({
+          message: 'Do you want to delete this Talent?',
+          header: 'Delete Talent',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.talentService
+              .deleteTalent(talentId)
+              .pipe(takeUntil(this.endsubs$))
+              .subscribe(
+                () => {
+                  this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Talent is deleted!'
+                  });
+                  timer(2000)
+                  .toPromise()
+                  .then(() => {
+                    this.location.back();
+                  });
+                },
+                () => {
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Talent is not deleted!'
+                  });
+                }
+              );
+          }
+        });
+      }
       
       private _updateTalent(talentFormData: FormData) {
         this.talentService
@@ -143,6 +150,7 @@ export class TalentFormComponent implements OnInit {
                 this.talentForm['hair'].setValue(talent.hair)
                 this.talentForm['eyes'].setValue(talent.eyes)          
                 this.imageDisplay = talent.image       
+                ;
                 
               })
             }

@@ -6,6 +6,7 @@
       <p-button class=" mr-3 create__button" styleClass="p-button-success" [label]="editmode ? 'Update':'Create'" icon="pi pi-plus"
         (click)="onSubmit()"></p-button>
       <p-button styleClass="p-button-primary" label="Cancel" icon="pi pi-plus" routerLink="/talents"></p-button>
+      <p-button *ngIf="editmode" (click)="_deleteTalent(currentTalentid)" styleClass="p-button-danger" class="ml-3" icon="pi pi-trash"></p-button>
     </div>
 
   </p-toolbar>
@@ -98,3 +99,10 @@
   </form>
 
 </p-card>
+
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
+
