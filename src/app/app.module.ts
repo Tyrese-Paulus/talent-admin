@@ -25,13 +25,16 @@ import { ToastModule} from 'primeng/toast'
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CalendarComponent } from './components/event-calendar/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     TalentFormComponent,
-    TalentListComponent
+    TalentListComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    FullCalendarModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
