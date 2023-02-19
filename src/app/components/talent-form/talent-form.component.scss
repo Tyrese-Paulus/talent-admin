@@ -7,3 +7,35 @@
 .delete__button{
   right: 10px;
 }
+
+.cover__image{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #E8E8E8;
+  width: 400px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.talent__form{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.image__gallery{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #E8E8E8;
+  width: 400px;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-left: 60px;
+}
+
+.talent__gallery{
+  display: flex;
+  flex-direction: row;
+}

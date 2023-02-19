@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TalentService } from 'src/app/services/talent-service/talent.service';
-import { Talent } from 'src/app/models/talent';
-import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService, ConfirmationService } from 'primeng/api';
 import { takeUntil } from 'rxjs/operators';
 import { Subject, timer } from 'rxjs';
 import { Location } from '@angular/common';
+
+import { TalentService } from 'src/app/services/talent-service/talent.service';
+import { MessageService, ConfirmationService } from 'primeng/api';
+import { Talent } from 'src/app/models/talent';
 
 
 @Component({
@@ -17,6 +17,7 @@ import { Location } from '@angular/common';
 })
 export class TalentFormComponent implements OnInit {
 
+  talent: Talent;
   form: FormGroup;
   isSubmited: boolean = false;
   imageDisplay: string | ArrayBuffer;
@@ -41,7 +42,6 @@ export class TalentFormComponent implements OnInit {
     });
 
     this.currentTalentid = this.route.snapshot.paramMap.get("id")
-
     this._checkEditMode();
   }
 
@@ -169,17 +169,11 @@ export class TalentFormComponent implements OnInit {
             talentFormData.append(key, this.talentForm[key].value);
           });
       
-      
           if(this.editmode){
-            console.log(talentFormData);
-            
             this._updateTalent(talentFormData)
           } else {
-            console.log(talentFormData);
-
             this._addTalent(talentFormData);
           }
-      
         }
         
         
@@ -197,7 +191,7 @@ export class TalentFormComponent implements OnInit {
     }
   }
 
-    get talentForm(){
+  get talentForm(){
     return this.form.controls
   }
 

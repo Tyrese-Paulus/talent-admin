@@ -27,6 +27,9 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CalendarComponent } from './components/event-calendar/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     SidebarComponent,
     TalentFormComponent,
     TalentListComponent,
-    CalendarComponent
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,9 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ReactiveFormsModule,
     ToastModule,
     ConfirmDialogModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatSelectModule
+
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]

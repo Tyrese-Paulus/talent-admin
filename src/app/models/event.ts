@@ -4,5 +4,6 @@ export class Event {
     start?: string;
     end?: string;
     allDay?: boolean;
+    modelsScheduled?: string;
   }
   
