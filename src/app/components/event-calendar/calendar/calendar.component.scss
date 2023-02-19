@@ -46,3 +46,17 @@ h2 {
     margin: 0 auto;
   }
   
+  .event__form {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    background: #bfdbfe;
+    transform: translate(-50%, -50%);
+    padding: 0 30px 30px;
+    border-radius: 6px;
+    text-align: center;
+    color: black;
+    font-weight: 500;
+    font-size: large;
+  }

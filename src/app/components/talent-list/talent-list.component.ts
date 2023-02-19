@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Talent } from './../../models/talent';
 import { Router } from '@angular/router';
 
+import { Talent } from './../../models/talent';
 import { TalentService } from 'src/app/services/talent-service/talent.service';
 
 
