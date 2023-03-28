@@ -11,4 +11,7 @@ export class Talent {
   shoe?: number;
   hair?: string;
   eyes?: string;
+  organisation?: string;
+  chest?: string;
+  gender?: string;
 }
