@@ -14,4 +14,5 @@ export class Talent {
   organisation?: string;
   chest?: string;
   gender?: string;
+  location?: String;
 }

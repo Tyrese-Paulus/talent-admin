@@ -12,11 +12,6 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { Talent } from 'src/app/models/talent';
 
-interface Food {
-  value: string;
-  name: string;
-}
-
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -82,7 +77,7 @@ export class CalendarComponent implements OnInit{
     }
 
     this._getTalents()
-        
+
   }
 
   addEventMode(){
@@ -197,7 +192,7 @@ export class CalendarComponent implements OnInit{
           }
         );
     }
-    
+
   }
 
   get eventForm(){
@@ -206,10 +201,10 @@ export class CalendarComponent implements OnInit{
 
   _getTalents(){
     this.talentService.getTalents().subscribe(talents =>{
-      this.talentList = talents;      
+      this.talentList = talents;
     })
   }
-  
+
 }
 
 

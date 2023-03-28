@@ -21,7 +21,7 @@
           <small *ngIf="talentForm['name'].invalid && isSubmited" class="p-error">Name is required</small>
         </div>
       </div>
-  
+
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="height" class="col-fixed" style="width:60px">Height:</label>
         <div class="col">
@@ -30,16 +30,15 @@
           <small *ngIf="talentForm['height'].invalid && isSubmited" class="p-error">Height is required</small>
         </div>
       </div>
-  
+
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="bust" class="col-fixed" style="width:60px">Bust:</label>
         <div class="col">
           <input formControlName="bust" id="bust" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
-            <small *ngIf="talentForm['bust'].invalid && isSubmited" class="p-error">Bust is required</small>
         </div>
       </div>
-  
+
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="waist" class="col-fixed" style="width:60px">Waist:</label>
         <div class="col">
@@ -48,25 +47,23 @@
             <small *ngIf="talentForm['waist'].invalid && isSubmited" class="p-error">Waist is required</small>
         </div>
       </div>
-  
+
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="hips" class="col-fixed" style="width:60px">Hips:</label>
         <div class="col">
           <input formControlName="hips" id="hips" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
-            <small *ngIf="talentForm['hips'].invalid && isSubmited" class="p-error">Hips is required</small>
         </div>
       </div>
-  
+
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="dress" class="col-fixed" style="width:60px">Dress:</label>
         <div class="col">
           <input formControlName="dress" id="dress" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
-            <small *ngIf="talentForm['dress'].invalid && isSubmited" class="p-error">Dress is required</small>
         </div>
       </div>
-  
+
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="shoe" class="col-fixed" style="width:60px">Shoe:</label>
         <div class="col">
@@ -75,7 +72,7 @@
             <small *ngIf="talentForm['shoe'].invalid && isSubmited" class="p-error">shoe is required</small>
         </div>
       </div>
-      
+
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="hair" class="col-fixed" style="width:60px">Hair:</label>
         <div class="col">
@@ -84,7 +81,16 @@
             <small *ngIf="talentForm['hair'].invalid && isSubmited" class="p-error">Hair is required</small>
         </div>
       </div>
-  
+
+      <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
+        <label for="chest" class="col-fixed" style="width:60px">Chest:</label>
+        <div class="col">
+          <input formControlName="chest" id="chest" type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
+            <small *ngIf="talentForm['chest'].invalid && isSubmited" class="p-error">Chest is required</small>
+        </div>
+      </div>
+
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="eyes" class="col-fixed" style="width:60px">Eyes:</label>
         <div class="col">
@@ -93,9 +99,36 @@
             <small *ngIf="talentForm['eyes'].invalid && isSubmited" class="p-error">Eyes is required</small>
         </div>
       </div>
-  
+
+      <mat-form-field>
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{gender}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Organisation</mat-label>
+        <mat-select formControlName="organisation">
+          <mat-option *ngFor="let organisation of organisations" [value]="organisation">
+            {{organisation}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="location">
+          <mat-option *ngFor="let location of locations" [value]="location">
+            {{location}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </div>
-        
+
     <div class="talent__gallery">
       <div class="cover__image">
         <br>
@@ -110,15 +143,6 @@
         <br>
       </div>
     </div>
-
-    <!-- <p-card class="p-field p-col-12 cover__image">
-      <label for="image">Cover Image</label>
-      <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
-      <small *ngIf="talentForm['image'].invalid && isSubmited" class="p-error">Image is required</small>
-      <div class="p-col-2 p-mt-2 p-pl-0">
-        <img class="talent__image" [src]="imageDisplay" alt=" " />
-      </div>
-    </p-card> -->
 
   </form>
 

@@ -28,7 +28,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CalendarComponent } from './components/event-calendar/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import {MatSelectModule} from '@angular/material/select';
-
+import {DropdownModule} from 'primeng/dropdown';
+import { CarouselModule } from 'primeng/carousel';
 
 
 @NgModule({
@@ -59,8 +60,8 @@ import {MatSelectModule} from '@angular/material/select';
     ToastModule,
     ConfirmDialogModule,
     FullCalendarModule,
-    MatSelectModule
-
+    MatSelectModule,
+    DropdownModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
