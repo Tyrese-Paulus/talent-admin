@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject, timer } from 'rxjs';
 import { Location } from '@angular/common';
 
+import { Talent } from 'src/app/models/talent';
 import { TalentService } from 'src/app/services/talent-service/talent.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { Talent } from 'src/app/models/talent';
 
 
 @Component({
@@ -18,6 +18,7 @@ import { Talent } from 'src/app/models/talent';
 export class TalentFormComponent implements OnInit {
 
   talent: Talent;
+  editedTalent: Talent;
   form: FormGroup;
   isSubmited: boolean = false;
   imageDisplay: string | ArrayBuffer;
@@ -28,6 +29,7 @@ export class TalentFormComponent implements OnInit {
   genders: any[] = ['Male', 'Female'];
   organisations: any[] = ['Demo', 'Commercial'];
   locations: any[] = ['Johannesburg', 'Cape Town'];
+
 
   constructor(private formBuilder: FormBuilder, private talentService: TalentService, private route: ActivatedRoute, private messageService: MessageService, private location: Location, private confirmationService: ConfirmationService) {}
 
@@ -46,7 +48,7 @@ export class TalentFormComponent implements OnInit {
        gender:[''],
        organisation:[''],
        location:[''],
-       chest: ['']
+       chest: [''],
     });
 
     this.currentTalentid = this.route.snapshot.paramMap.get("id")
@@ -191,17 +193,18 @@ export class TalentFormComponent implements OnInit {
 
 
     onImageUpload(event) {
-    const file = event.target.files[0];
-    if(file){
-      this.form.patchValue({ image: file});
-      this.form.get('image').updateValueAndValidity();
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        this.imageDisplay = fileReader.result;
-      };
-      fileReader.readAsDataURL(file)
+      const file = event.target.files[0];
+      if(file){
+        this.form.patchValue({ image: file});
+        this.form.get('image').updateValueAndValidity();
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+          this.imageDisplay = fileReader.result;
+        };
+        fileReader.readAsDataURL(file)
+      }
     }
-  }
+
 
   get talentForm(){
     return this.form.controls

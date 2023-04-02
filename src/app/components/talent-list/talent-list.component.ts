@@ -5,7 +5,6 @@ import { Talent } from './../../models/talent';
 import { TalentService } from 'src/app/services/talent-service/talent.service';
 
 
-
 @Component({
   selector: 'app-talent-list',
   templateUrl: './talent-list.component.html',
