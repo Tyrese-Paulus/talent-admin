@@ -1,21 +1,15 @@
-<div class="card">
+<section class="card">
   <p-toolbar>
     <div class="p-toolbar-group-left">
       <p-button label="New" icon="pi pi-plus" routerLink="/talents/form"></p-button>
     </div>
   </p-toolbar>
 
-  <div class="flex flex-row flex-wrap card-container blue-container">
+  <section class="flex flex-row flex-wrap card-container blue-container talent">
+    <article *ngFor="let talent of talents" class=" m-1 mr-2 mt-3" >
+      <p-image (click)="updateTalent(talent.id)" [src]="talent.image" alt="Image" width="250px" height="350px"></p-image>
+    </article>
+  </section>
 
-    <div *ngFor="let talent of talents"
-    class=" m-1 mr-2 mt-3" >
-
-      <p-image (click)="updateTalent(talent.id)" [src]="talent.image" alt="Image" width="250px" height="350px">
-      </p-image>
-
-    </div>
-
-  </div>
-
-</div>
+</section>
 

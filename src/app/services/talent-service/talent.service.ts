@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Talent } from '../../models/talent';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
+
+import { Talent } from '../../models/talent';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,4 @@ export class TalentService {
   updateTalent(talentData: FormData, productid: string): Observable<Talent>{
     return this.http.put<Talent>(`${this.apiURLTalents}/${productid}`, talentData);
   }
-
-  // createTalent(talent: Talent){
-  //   return this.http.post(this.apiURLTalents, talent)
-  // }
 }

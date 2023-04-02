@@ -5,9 +5,9 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject, timer } from 'rxjs';
 import { Location } from '@angular/common';
 
+import { Talent } from 'src/app/models/talent';
 import { TalentService } from 'src/app/services/talent-service/talent.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { Talent } from 'src/app/models/talent';
 
 
 @Component({
@@ -18,6 +18,7 @@ import { Talent } from 'src/app/models/talent';
 export class TalentFormComponent implements OnInit {
 
   talent: Talent;
+  editedTalent: Talent;
   form: FormGroup;
   isSubmited: boolean = false;
   imageDisplay: string | ArrayBuffer;
@@ -25,20 +26,29 @@ export class TalentFormComponent implements OnInit {
   currentTalentid: string;
   endsubs$: Subject<any> = new Subject();
 
-  constructor(private formBuilder: FormBuilder, private talentService: TalentService, private route: ActivatedRoute, private messageService: MessageService, private location: Location, private confirmationService: ConfirmationService) { }
+  genders: any[] = ['Male', 'Female'];
+  organisations: any[] = ['Demo', 'Commercial'];
+  locations: any[] = ['Johannesburg', 'Cape Town'];
+
+
+  constructor(private formBuilder: FormBuilder, private talentService: TalentService, private route: ActivatedRoute, private messageService: MessageService, private location: Location, private confirmationService: ConfirmationService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
        name:['', Validators.required],
        height:['', Validators.required],
-       bust:['', Validators.required],
+       bust:['',],
        waist:['', Validators.required],
-       hips:['', Validators.required],
-       dress:['', Validators.required],
+       hips:['',],
+       dress:['',],
        shoe:['', Validators.required],
        hair:['', Validators.required],
        eyes:['', Validators.required],
-       image: ['']
+       image: [''],
+       gender:[''],
+       organisation:[''],
+       location:[''],
+       chest: [''],
     });
 
     this.currentTalentid = this.route.snapshot.paramMap.get("id")
@@ -105,7 +115,7 @@ export class TalentFormComponent implements OnInit {
           }
         });
       }
-      
+
       private _updateTalent(talentFormData: FormData) {
         this.talentService
         .updateTalent(talentFormData, this.currentTalentid)
@@ -148,52 +158,57 @@ export class TalentFormComponent implements OnInit {
                 this.talentForm['dress'].setValue(talent.dress)
                 this.talentForm['shoe'].setValue(talent.shoe)
                 this.talentForm['hair'].setValue(talent.hair)
-                this.talentForm['eyes'].setValue(talent.eyes)          
-                this.imageDisplay = talent.image       
+                this.talentForm['eyes'].setValue(talent.eyes)
+                this.talentForm['gender'].setValue(talent.gender)
+                this.talentForm['organisation'].setValue(talent.organisation)
+                this.talentForm['location'].setValue(talent.location)
+                this.talentForm['chest'].setValue(talent.chest)
+                this.imageDisplay = talent.image
                 ;
-                
+
               })
             }
           })
         }
-        
+
         onSubmit(){
           this.isSubmited = true
-      
+
           if(this.form.invalid){
             return
           }
-      
+
           const talentFormData = new FormData();
           Object.keys(this.talentForm).map((key) => {
             talentFormData.append(key, this.talentForm[key].value);
           });
-      
+
           if(this.editmode){
             this._updateTalent(talentFormData)
           } else {
             this._addTalent(talentFormData);
           }
         }
-        
-        
+
+
 
     onImageUpload(event) {
-    const file = event.target.files[0];
-    if(file){
-      this.form.patchValue({ image: file});
-      this.form.get('image').updateValueAndValidity();
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        this.imageDisplay = fileReader.result;
-      };
-      fileReader.readAsDataURL(file)
+      const file = event.target.files[0];
+      if(file){
+        this.form.patchValue({ image: file});
+        this.form.get('image').updateValueAndValidity();
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+          this.imageDisplay = fileReader.result;
+        };
+        fileReader.readAsDataURL(file)
+      }
     }
-  }
+
 
   get talentForm(){
     return this.form.controls
   }
 
-    
+
 }

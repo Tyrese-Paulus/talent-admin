@@ -1,9 +1,11 @@
 <p-toast></p-toast>
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
-<div class='demo-app'>
 
-    <div class='demo-app-sidebar'>
-      <div class='demo-app-sidebar-section'>
+<section class="calender">
+
+    <section class="calender__sidebar">
+
+      <article>
         <h2>All Events ({{currentEvents.length}})</h2>
         <ul>
           <li *ngFor='let event of currentEvents'>
@@ -12,9 +14,9 @@
             <i>{{event.extendedProps['modelsScheduled']}}</i>
           </li>
         </ul>
-      </div>
-  
-      <div class='demo-app-sidebar-section'>
+      </article>
+
+      <article>
         <label>
           <input
             type='checkbox'
@@ -23,34 +25,35 @@
           />
           toggle weekends
         </label>
-      </div>
+      </article>
 
-    </div>
-    
-  
-    <div class='demo-app-main'>
+    </section>
+
+
+    <section class="calender__main">
       <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
         <ng-template #eventContent let-arg>
           <b>{{ arg.timeText }}</b>
           <b>{{ arg.event.title }}</b>
         </ng-template>
       </full-calendar>
-    </div>
+    </section>
 
     <form *ngIf="addEvent" [formGroup]="form" class="event__form">
+
       <br>
       <strong [textContent]="editMode? 'Edit Event' : 'Add Event'"></strong>
 
-      <div class="mt-4 mb-4 field grid">
+      <section class="mt-4 mb-4 field grid">
         <label for="firstname3" class="col-fixed">Title:</label>
-        <div class="col">
+        <section class="col">
           <input formControlName="title" id="title" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" />
             <small *ngIf="eventForm['title'].invalid && isSubmited" class="p-error">Title is required</small>
-        </div>
-      </div>
+        </section>
+      </section>
 
-      
+
       <mat-form-field>
         <mat-label>Models Scheduled</mat-label>
         <mat-select [formControl]="models" multiple>
@@ -59,16 +62,15 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      
 
-    <div>
-      <p-button styleClass="p-button-success" (click)="onSubmit()" >Submit</p-button>
-      <p-button class="ml-3" (click) = "addEventMode()" >Cancel</p-button>
-      <p-button *ngIf="editMode" (click)="deleteEvent(curentEventId)" styleClass="p-button-danger" class="ml-3" icon="pi pi-trash"></p-button>
-    </div>
+
+      <section>
+        <p-button styleClass="p-button-success" (click)="onSubmit()" >Submit</p-button>
+        <p-button class="ml-3" (click) = "addEventMode()" >Cancel</p-button>
+        <p-button *ngIf="editMode" (click)="deleteEvent(curentEventId)" styleClass="p-button-danger" class="ml-3" icon="pi pi-trash"></p-button>
+      </section>
 
     </form>
 
-  </div>
+  </section>
 
-  

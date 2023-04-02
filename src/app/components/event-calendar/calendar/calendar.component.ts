@@ -1,21 +1,20 @@
-import { TalentService } from 'src/app/services/talent-service/talent.service';
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { MessageService, ConfirmationService } from 'primeng/api';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { timer } from 'rxjs';
-import { EventService } from '../../../services/event-service/event.service'
 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-import { Talent } from 'src/app/models/talent';
 
-interface Food {
-  value: string;
-  name: string;
-}
+import { Talent } from 'src/app/models/talent';
+import { TalentService } from 'src/app/services/talent-service/talent.service';
+import { EventService } from '../../../services/event-service/event.service'
+
+import { MessageService, ConfirmationService } from 'primeng/api';
+
+
 
 @Component({
   selector: 'app-calendar',
@@ -60,11 +59,6 @@ export class CalendarComponent implements OnInit{
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this)
-    /* you can update a remote database when these fire:
-    eventAdd:
-    eventChange:
-    eventRemove:
-    */
   };
   currentEvents: EventApi[] = [];
 
@@ -82,7 +76,7 @@ export class CalendarComponent implements OnInit{
     }
 
     this._getTalents()
-        
+
   }
 
   addEventMode(){
@@ -108,7 +102,7 @@ export class CalendarComponent implements OnInit{
 
   handleDateSelect(selectInfo: DateSelectArg) {
     const calendarApi = selectInfo.view.calendar;
-    calendarApi.unselect(); // clear date selection
+    calendarApi.unselect();
 
     this.addEventMode()
     this.startDt = selectInfo.startStr
@@ -197,7 +191,7 @@ export class CalendarComponent implements OnInit{
           }
         );
     }
-    
+
   }
 
   get eventForm(){
@@ -206,10 +200,10 @@ export class CalendarComponent implements OnInit{
 
   _getTalents(){
     this.talentService.getTalents().subscribe(talents =>{
-      this.talentList = talents;      
+      this.talentList = talents;
     })
   }
-  
+
 }
 
 

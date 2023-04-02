@@ -1,14 +1,18 @@
 <mat-toolbar class="mat-elevation-z8">
+
   <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
   </button>
   Talent
+
 </mat-toolbar>
 
 <mat-sidenav-container>
+
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <img class="avatar mat-elevation-z8" src="https://www.syncmodels.com/assets/images/205/205-logo.svg" />
+
+    <img class="avatar mat-elevation-z8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/D.E.M.O._Logo_2006.svg/800px-D.E.M.O._Logo_2006.svg.png?20221004001533" />
     <mat-divider></mat-divider>
 
     <button mat-button class="menu-button" routerLink="/talents">
@@ -20,14 +24,14 @@
       <span>Calendar</span>
     </button>
 
-
     <mat-divider></mat-divider>
 
-
   </mat-sidenav>
+
   <mat-sidenav-content>
     <div class="content mat-elevation-z8 main__card">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
+
 </mat-sidenav-container>
