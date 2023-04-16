@@ -8,7 +8,7 @@ import { Event } from '../../models/event';
   providedIn: 'root'
 })
 export class EventService {
-   apiURLTalents = "http://localhost:3000/api/v1/" + "events/"
+   apiURLTalents = "https://talent-backend-tp.herokuapp.com/api/v1/" + "events/"
 
   constructor(private http:HttpClient) { }
 

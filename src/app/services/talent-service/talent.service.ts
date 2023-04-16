@@ -8,7 +8,7 @@ import { Talent } from '../../models/talent';
   providedIn: 'root'
 })
 export class TalentService {
-   apiURLTalents = "http://localhost:3000/api/v1/" + "talents/"
+   apiURLTalents = "https://talent-backend-tp.herokuapp.com/api/v1/" + "talents/"
   constructor(private http:HttpClient) { }
 
   getTalents(): Observable<Talent[]>{

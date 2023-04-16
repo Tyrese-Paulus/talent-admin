@@ -7,7 +7,7 @@
 
   <section class="flex flex-row flex-wrap card-container blue-container talent">
     <article *ngFor="let talent of talents" class=" m-1 mr-2 mt-3" >
-      <p-image (click)="updateTalent(talent.id)" [src]="talent.image" alt="Image" width="250px" height="350px"></p-image>
+      <p-image class="talentImage" (click)="updateTalent(talent.id)" [src]="talent.image" alt="Image" width="250px" height="350px"></p-image>
     </article>
   </section>
 

@@ -49,7 +49,7 @@ export class CalendarComponent implements OnInit{
     },
     initialView: 'dayGridMonth',
     eventSources: [
-      'http://localhost:3000/api/v1/events'
+      'https://talent-backend-tp.herokuapp.com/api/v1/events'
     ],
     weekends: true,
     editable: true,
@@ -108,9 +108,6 @@ export class CalendarComponent implements OnInit{
     this.startDt = selectInfo.startStr
     this.endDt = selectInfo.endStr
     this.allday = selectInfo.allDay
-
-    console.log(this.currentEvents);
-
   }
 
   handleEventClick(clickInfo: EventClickArg) {

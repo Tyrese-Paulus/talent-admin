@@ -31,6 +31,7 @@
         <div class="col">
           <input formControlName="height" id="height" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
+            <small>cm</small>
           <small *ngIf="talentForm['height'].invalid && isSubmited" class="p-error">Height is required</small>
         </div>
       </div>
@@ -38,8 +39,9 @@
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="bust" class="col-fixed" style="width:60px">Bust:</label>
         <div class="col">
-          <input formControlName="bust" id="bust" type="text"
+          <input placeholder="0 if male" formControlName="bust" id="bust" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
+            <small>cm</small>
         </div>
       </div>
 
@@ -48,6 +50,7 @@
         <div class="col">
           <input formControlName="waist" id="waist" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
+            <small>cm</small>
             <small *ngIf="talentForm['waist'].invalid && isSubmited" class="p-error">Waist is required</small>
         </div>
       </div>
@@ -55,16 +58,18 @@
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="hips" class="col-fixed" style="width:60px">Hips:</label>
         <div class="col">
-          <input formControlName="hips" id="hips" type="text"
+          <input placeholder="0 if male" formControlName="hips" id="hips" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
+            <small>cm</small>
         </div>
       </div>
 
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="dress" class="col-fixed" style="width:60px">Dress:</label>
         <div class="col">
-          <input formControlName="dress" id="dress" type="text"
+          <input placeholder="0 if male" formControlName="dress" id="dress" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
+            <small>uk</small>
         </div>
       </div>
 
@@ -73,6 +78,7 @@
         <div class="col">
           <input formControlName="shoe" id="shoe" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
+            <small>uk</small>
             <small *ngIf="talentForm['shoe'].invalid && isSubmited" class="p-error">shoe is required</small>
         </div>
       </div>
@@ -89,8 +95,9 @@
       <div class="field grid" style="margin-right: 16px; margin-top: 30px;">
         <label for="chest" class="col-fixed" style="width:60px">Chest:</label>
         <div class="col">
-          <input formControlName="chest" id="chest" type="text"
+          <input placeholder="0 if female" formControlName="chest" id="chest" type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"  style="width: 196px;" />
+            <small>cm</small>
             <small *ngIf="talentForm['chest'].invalid && isSubmited" class="p-error">Chest is required</small>
         </div>
       </div>
