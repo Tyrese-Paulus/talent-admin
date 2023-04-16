@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { MessageService, ConfirmationService } from 'primeng/api';
   templateUrl: './talent-form.component.html',
   styleUrls: ['./talent-form.component.scss']
 })
-export class TalentFormComponent implements OnInit {
+export class TalentFormComponent implements OnInit, OnDestroy {
 
   talent: Talent;
   editedTalent: Talent;
@@ -53,6 +53,11 @@ export class TalentFormComponent implements OnInit {
 
     this.currentTalentid = this.route.snapshot.paramMap.get("id")
     this._checkEditMode();
+  }
+
+  ngOnDestroy(): void {
+    this.endsubs$.next(true);
+    this.endsubs$.complete();
   }
 
   private _addTalent(talentFormData: FormData) {
@@ -145,11 +150,11 @@ export class TalentFormComponent implements OnInit {
 
 
         private _checkEditMode(){
-          this.route.params.subscribe((params) => {
+          this.route.params.pipe(takeUntil(this.endsubs$)).subscribe((params) => {
             if(params['id']){
               this.editmode = true
               this.currentTalentid = params['id']
-              this.talentService.getTalent(params['id']).subscribe((talent) => {
+              this.talentService.getTalent(params['id']).pipe(takeUntil(this.endsubs$)).subscribe((talent) => {
                 this.talentForm['name'].setValue(talent.name)
                 this.talentForm['height'].setValue(talent.height)
                 this.talentForm['bust'].setValue(talent.bust)

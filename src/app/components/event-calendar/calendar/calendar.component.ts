@@ -1,6 +1,7 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { timer } from 'rxjs';
+import { timer, Subject  } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -22,7 +23,7 @@ import { MessageService, ConfirmationService } from 'primeng/api';
   styleUrls: ['./calendar.component.scss']
 })
 
-export class CalendarComponent implements OnInit{
+export class CalendarComponent implements OnInit, OnDestroy{
   models = new FormControl('')
   talentList: Talent[];
   addEvent = false;
@@ -34,6 +35,7 @@ export class CalendarComponent implements OnInit{
   allday;
   curentEventId;
   form: FormGroup;
+  endsubs$: Subject<any> = new Subject();
   calendarVisible = true;
   calendarOptions: CalendarOptions = {
     plugins: [
@@ -79,6 +81,11 @@ export class CalendarComponent implements OnInit{
 
   }
 
+  ngOnDestroy(): void {
+    this.endsubs$.next(true);
+    this.endsubs$.complete();
+  }
+
   addEventMode(){
     this.addEvent = !this.addEvent
     this.editMode = false
@@ -121,7 +128,7 @@ export class CalendarComponent implements OnInit{
       header: 'Delete Talent',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-    this.eventService.deleteEvent(id).subscribe(
+    this.eventService.deleteEvent(id).pipe(takeUntil(this.endsubs$)).subscribe(
       () => {
         this.messageService.add({
           severity: 'success',
@@ -166,7 +173,7 @@ export class CalendarComponent implements OnInit{
         end: this.endDt,
         allDay: this.allday,
         modelsScheduled: this.models['value']
-      }).subscribe(
+      }).pipe(takeUntil(this.endsubs$)).subscribe(
         () => {
           this.messageService.add({
             severity: 'success',
@@ -196,7 +203,7 @@ export class CalendarComponent implements OnInit{
   }
 
   _getTalents(){
-    this.talentService.getTalents().subscribe(talents =>{
+    this.talentService.getTalents().pipe(takeUntil(this.endsubs$)).subscribe(talents =>{
       this.talentList = talents;
     })
   }
